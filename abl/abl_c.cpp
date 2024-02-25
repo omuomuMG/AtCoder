@@ -44,19 +44,19 @@ int main()
     cin >> n >> m;
 
     UnionFind tree(n);
-    int a, b;
 
     for (int i = 0; i < m; i++)
     {
+        int a, b;
         cin >> a >> b;
         a--;
         b--;
-        tree.unite(a, b);
+        tree.unite(a, b); // xの木とyの木を併合する
     }
-    set<int> count;
+    set<int> a;
     for (int i = 0; i < n; i++)
     {
-        count.insert(tree.root(i));
+        a.insert(tree.root(i));
     }
-    cout << count.size() - 1;
+    cout << a.size() - 1;
 }
