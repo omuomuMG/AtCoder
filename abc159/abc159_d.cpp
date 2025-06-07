@@ -6,42 +6,32 @@ using ll = long long;
 
 int main()
 {
-    ll n;
+    int n;
     cin >> n;
     vector<ll> a(n);
-    map<ll, ll> mp;
+    map<ll, ll> mp; // ボールの種類:個数
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
         mp[a[i]]++;
     }
 
-    ll sum = 0;
+    ll cum = 0;
     for (auto [key, value] : mp)
     {
-        if (value > 1)
-        {
-            sum += (value * (value - 1)) / 2;
-        }
+        cum += (value * (value - 1)) / 2;
     }
-
-    ll temp;
-    ll value;
 
     for (int i = 0; i < n; i++)
     {
-        value = mp[a[i]];
-        if (value <= 1)
-        {
-            cout << sum << endl;
-        }
-        else
-        {
-            temp = sum;
-            temp -= (value * (value - 1)) / 2;
-            value--;
-            temp += (value * (value - 1)) / 2;
-            cout << temp << endl;
-        }
+        cum -= (mp[a[i]] * (mp[a[i]] - 1)) / 2;
+
+        ll value = mp[a[i]] - 1;
+
+        cum += (value * (value - 1)) / 2;
+        cout << cum << endl;
+
+        cum += (mp[a[i]] * (mp[a[i]] - 1)) / 2;
+        cum -= (value * (value - 1)) / 2;
     }
 }
